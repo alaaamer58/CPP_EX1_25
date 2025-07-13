@@ -3,6 +3,11 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
+#include "graph.hpp"
+#include <stdexcept>
+#include <iostream>
+
+
 namespace graph
 {
     struct Edge 
@@ -28,6 +33,7 @@ namespace graph
             void addEdge (int from, int to , int weight = 1);
             void removeEdge (int from, int to , int weight = 1);
             void printGraph();
+            static Graph fromInput(std::istream& in);
 
 
             int getNumVertices() const;

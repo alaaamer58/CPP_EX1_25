@@ -1,10 +1,5 @@
 //alaaamer0508@gmail.com
-
 #include "graph.hpp"
-#include "stdexcept"
-#include "iostream"
-
-
 namespace graph 
 {
     Graph::Graph(int vertices)
@@ -55,7 +50,7 @@ namespace graph
             }
             curr = curr->next;
         }
-        
+
         Edge* newEdge1 = new Edge (to,weight,adjacencyList[from]);
         adjacencyList[from] = newEdge1;
 
@@ -110,7 +105,6 @@ namespace graph
         else{
             throw std::runtime_error("Edge does not exist between given vertices");
         }
-        
     }
 
     void Graph::printGraph()
@@ -129,12 +123,10 @@ namespace graph
         }
     }
 
-
     int Graph::getNumVertices() const
     {
         return numVertices;
     }
-
 
     Edge* Graph::getNeighbors(int vertices) const
     {
@@ -145,4 +137,21 @@ namespace graph
         
         return adjacencyList[vertices];
     }
-}
+
+    Graph Graph::fromInput(std::istream& in) {
+        int numVertices, numEdges;
+        std::cout << "Enter number of vertices: ";
+        in >> numVertices;
+        Graph g(numVertices);
+
+        std::cout << "Enter number of edges: ";
+        in >> numEdges;
+        std::cout << "Enter each edge as: from to weight (0-based index):\n";
+        for (int i = 0; i < numEdges; ++i) {
+            int from, to, weight;
+            in >> from >> to >> weight;
+            g.addEdge(from, to, weight);
+        }
+        return g;
+    }
+}   
